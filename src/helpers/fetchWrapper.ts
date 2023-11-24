@@ -1,12 +1,5 @@
-const controller = new AbortController();
-const { signal } = controller;
-
-const defaultHeaderOptions = {
-  "Acces-Control-Allow-Origin": "*",
-};
-
 function bindUrl(path: string) {
-  return `${import.meta.env.URL}${path}`;
+  return `https://pergamum-biblioteca.pucpr.br/api/consulta${path}`;
 }
 
 async function handleResponse(response: Response | void) {
@@ -22,15 +15,9 @@ async function handleResponse(response: Response | void) {
 
 async function get(url: string, options?: RequestInit) {
   const requestOptions = {
-    headers: defaultHeaderOptions,
     method: "GET",
-    signal,
     ...options,
   } as RequestInit;
-
-  if (signal.aborted) {
-    return;
-  }
 
   const response = await fetch(bindUrl(url), requestOptions);
 
@@ -39,5 +26,4 @@ async function get(url: string, options?: RequestInit) {
 
 export const fetchWrapper = {
   get,
-  abortAll: () => controller.abort(),
 };
