@@ -5,11 +5,6 @@ function bindUrl(path: string) {
 async function handleResponse(response: Response | void) {
   const data = await response?.json?.();
 
-  if (!response?.ok) {
-    const error = !data;
-    return Promise.reject(error);
-  }
-
   return data;
 }
 
