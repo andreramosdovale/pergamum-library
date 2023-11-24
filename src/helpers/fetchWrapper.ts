@@ -6,7 +6,7 @@ const defaultHeaderOptions = {
 };
 
 function bindUrl(path: string) {
-  return `https://pergamum-biblioteca.pucpr.br/api/consulta/${path}`;
+  return `${path}`;
 }
 
 async function handleResponse(response: Response | void) {
