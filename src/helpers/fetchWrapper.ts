@@ -6,7 +6,7 @@ const defaultHeaderOptions = {
 };
 
 function bindUrl(path: string) {
-  return `${path}`;
+  return `${import.meta.env.URL}${path}`;
 }
 
 async function handleResponse(response: Response | void) {
