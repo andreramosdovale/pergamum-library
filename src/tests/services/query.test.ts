@@ -7,4 +7,16 @@ describe("Service/Query", () => {
 
     expect(data.count > 0);
   });
+
+  it("Api books returns no values", async () => {
+    const data = await queryService.books("LIVRE", "");
+
+    expect((data.count = 0));
+  });
+
+  it("Api indexOptions returns values", async () => {
+    const data = await queryService.indexOptions();
+
+    expect(data.count > 0);
+  });
 });
