@@ -1,0 +1,35 @@
+.card {
+  width: 80%;
+  align-self: center;
+  background-color: white;
+  padding: 20px 10px 20px 20px;
+  border-radius: var(--radius-5);
+
+  &-action {
+    display: block;
+    align-self: center;
+  }
+
+  &-content {
+    justify-content: center;
+    &-text {
+      word-break: break-word;
+    }
+  }
+}
+
+.line {
+  display: block;
+  width: 2px;
+  background-color: #AD7F58;
+  justify-content: center;
+  align-self: center;
+
+  &-action {
+    height: 80px;
+  }
+
+  &-header {
+    height: 12px;
+  }
+}
