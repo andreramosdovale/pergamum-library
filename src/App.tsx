@@ -1,13 +1,12 @@
-import queryService from "./services/query";
+import "./styles/App.scss";
 
 function App() {
-  const call = async () => {
-    const data = await queryService.books("LIVRE", "harry+potter");
-    console.log(data);
-  };
-
-  call();
-  return <></>;
+  return (
+    <div className="app">
+      <div className="app-header"></div>
+      <div className="app-filterBox"></div>
+    </div>
+  );
 }
 
 export default App;
