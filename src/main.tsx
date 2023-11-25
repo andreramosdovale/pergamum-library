@@ -8,7 +8,7 @@ import "./styles/global.scss";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Theme appearance="light" accentColor="purple" panelBackground="solid">
+    <Theme appearance="light" accentColor="brown" panelBackground="solid">
       <App />
     </Theme>
   </React.StrictMode>
