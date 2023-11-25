@@ -1,5 +1,5 @@
 import { Box, Checkbox, Flex, Text } from "@radix-ui/themes";
-import "./index.scss";
+import "./ReferenceCard.scss";
 
 interface ICardProps {
   title: string;
@@ -7,7 +7,7 @@ interface ICardProps {
   reference: string;
 }
 
-function ReferenceCard({ title, year, reference }: ICardProps) {
+export function ReferenceCard({ title, year, reference }: ICardProps) {
   return (
     <Box className="card">
       <Flex direction={"row"} gap="3">
@@ -31,5 +31,3 @@ function ReferenceCard({ title, year, reference }: ICardProps) {
     </Box>
   );
 }
-
-export default ReferenceCard;

@@ -1,5 +1,5 @@
 import "./styles/App.scss";
-import ImageCard from "./components/ImageCard";
+import { ImageCard } from "./components/ImageCard/ImageCard";
 import { Flex } from "@radix-ui/themes";
 
 function App() {
