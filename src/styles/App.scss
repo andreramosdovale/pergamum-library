@@ -1,9 +1,9 @@
 .app {
-  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
   background-color: #F9F9FB;
-  display: flex;
   flex-direction: column;
+  z-index: 0;
 
   &-header {
     width: 100%;
@@ -12,6 +12,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 1;
     filter: blur(3px);
     -webkit-filter: blur(3px);
   }
@@ -21,8 +22,8 @@
     height: 20dvh;
     width: 80%;
     align-self: center;
-    position: relative;
-    top: -10%;
-    margin-bottom: -2.5%;
+    margin-top: -5%;
+    margin-bottom: 2%;
+    z-index: 2;
   }
 }
