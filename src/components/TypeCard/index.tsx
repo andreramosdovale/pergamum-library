@@ -1,8 +1,13 @@
 import { Box, Checkbox, Flex, Text } from "@radix-ui/themes";
-import { bookResponse } from "../../types/response";
 import "./index.scss";
 
-function TypeCard(book: bookResponse) {
+interface ICardProps {
+  title: string;
+  year: string;
+  description: string;
+}
+
+function TypeCard({ title, year, description }: ICardProps) {
   return (
     <Box className="card">
       <Flex direction={"row"} gap="3">
@@ -13,14 +18,14 @@ function TypeCard(book: bookResponse) {
         <Flex direction={"column"} gap="3" className="card-content">
           <Flex direction={"row"} gap="3" className="card-content-header">
             <Box>
-              <Text weight={"bold"}>{book.obra}</Text>
+              <Text weight={"bold"}>{title}</Text>
             </Box>
             <div className="line line-header" />
             <Box>
-              <Text weight={"bold"}>{book.ano_publicacao}</Text>
+              <Text weight={"bold"}>{year}</Text>
             </Box>
           </Flex>
-          <Text className="card-content-text">{book.desc_tipo_obra}</Text>
+          <Text className="card-content-text">{description}</Text>
         </Flex>
       </Flex>
     </Box>

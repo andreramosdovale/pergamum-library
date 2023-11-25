@@ -1,8 +1,13 @@
 import { Box, Checkbox, Flex, Text } from "@radix-ui/themes";
-import { bookResponse } from "../../types/response";
 import "./index.scss";
 
-function ReferenceCard(book: bookResponse) {
+interface ICardProps {
+  title: string;
+  year: string;
+  reference: string;
+}
+
+function ReferenceCard({ title, year, reference }: ICardProps) {
   return (
     <Box className="card">
       <Flex direction={"row"} gap="3">
@@ -13,14 +18,14 @@ function ReferenceCard(book: bookResponse) {
         <Flex direction={"column"} gap="3" className="card-content">
           <Flex direction={"row"} gap="3" className="card-content-header">
             <Box>
-              <Text weight={"bold"}>{book.obra}</Text>
+              <Text weight={"bold"}>{title}</Text>
             </Box>
             <div className="line line-header" />
             <Box>
-              <Text weight={"bold"}>{book.ano_publicacao}</Text>
+              <Text weight={"bold"}>{year}</Text>
             </Box>
           </Flex>
-          <Text className="card-content-text">{book.referencia_sem_tag}</Text>
+          <Text className="card-content-text">{reference}</Text>
         </Flex>
       </Flex>
     </Box>
