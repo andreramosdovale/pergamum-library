@@ -10,7 +10,7 @@ interface ICardProps {
 export function ReferenceCard({ title, year, reference }: ICardProps) {
   return (
     <Box className="card">
-      <Flex direction={"row"} gap="3">
+      <Flex direction={"row"} wrap={"wrap"} gap="3">
         <Box className="card-action">
           <Checkbox className="card-action-checkbox" size="3" />
         </Box>
