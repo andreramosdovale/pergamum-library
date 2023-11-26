@@ -1,6 +1,6 @@
 import { Box, Checkbox, Flex } from "@radix-ui/themes";
 import { useExportStore } from "../../store/ExportStore";
-// import { useFilterStore } from "../../store/FilterStore";
+import { useFilterStore } from "../../store/FilterStore";
 import { ImageFragment } from "./fragments/ImageFragment";
 import { TypeFragment } from "./fragments/TypeFragment";
 import { ReferenceFragment } from "./fragments/ReferenceFragment";
@@ -15,10 +15,14 @@ interface ICardProps {
   type: string;
 }
 
+interface ICard {
+  [key: string]: JSX.Element;
+}
+
 export function Card({ id, reference, image, description, type }: ICardProps) {
   const exportStore = useExportStore();
-  // const filterStore = useFilterStore();
-  const cards = {
+  const filterStore = useFilterStore();
+  const cards: ICard = {
     img: <ImageFragment description={description} image={image} />,
     type: <TypeFragment description={description} type={type} />,
     ref: <ReferenceFragment description={description} reference={reference} />,
@@ -38,9 +42,7 @@ export function Card({ id, reference, image, description, type }: ICardProps) {
   };
 
   const ChoseCardType = (): JSX.Element => {
-    const cardType = "ref";
-
-    return cards[cardType];
+    return cards[filterStore.filter.type];
   };
 
   return (

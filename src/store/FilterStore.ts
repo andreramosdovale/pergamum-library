@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 type Item = {
-  type: "img" | "ref" | "type";
+  type: string;
   term: string;
 };
 

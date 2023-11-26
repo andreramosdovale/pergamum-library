@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Box, Button, Flex, Select, TextField } from "@radix-ui/themes";
 import { useExportStore } from "../../store/ExportStore";
+import { useFilterStore } from "../../store/FilterStore";
+
 import "./FilterBox.scss";
 
 export function FilterBox() {
   const [disable, setDisable] = useState(true);
   const exportStore = useExportStore();
+  const filterStore = useFilterStore();
 
   useEffect(() => {
     if (exportStore.selected.length > 0) {
@@ -21,7 +24,16 @@ export function FilterBox() {
         <TextField.Input size="3" placeholder="Termo" />
       </Box>
       <div className="line" />
-      <Select.Root size="3" defaultValue="ref">
+      <Select.Root
+        size="3"
+        defaultValue="ref"
+        onValueChange={(value) =>
+          filterStore.changeFilter({
+            term: filterStore.filter.term,
+            type: value,
+          })
+        }
+      >
         <Select.Trigger />
         <Select.Content position="popper">
           <Select.Item value="ref">Referencia</Select.Item>
