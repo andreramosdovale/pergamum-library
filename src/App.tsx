@@ -16,7 +16,6 @@ function App() {
               title={
                 "Harry Potter e a pedra filosofial  [gravação de vídeo] = Harry Potter and the philosophers's stone / 2016"
               }
-              year={"2016"}
               description={
                 "Harry Potter e a pedra filosofial  [gravação de vídeo] = Harry Potter and the philosophers's stone / 2016"
               }

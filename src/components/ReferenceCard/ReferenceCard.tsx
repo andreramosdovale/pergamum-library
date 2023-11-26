@@ -3,28 +3,21 @@ import "./ReferenceCard.scss";
 
 interface ICardProps {
   title: string;
-  year: string;
   reference: string;
 }
 
-export function ReferenceCard({ title, year, reference }: ICardProps) {
+export function ReferenceCard({ title, reference }: ICardProps) {
   return (
     <Box className="card">
       <Flex direction={"row"} wrap={"wrap"} gap="3">
         <Box className="card-action">
           <Checkbox className="card-action-checkbox" size="3" />
         </Box>
-        <div className="line line-action" />
+        <div className="line" />
         <Flex direction={"column"} gap="3" className="card-content">
-          <Flex direction={"row"} gap="3" className="card-content-header">
-            <Box>
-              <Text weight={"bold"}>{title}</Text>
-            </Box>
-            <div className="line line-header" />
-            <Box>
-              <Text weight={"bold"}>{year}</Text>
-            </Box>
-          </Flex>
+          <Text weight={"bold"} className="card-content-text">
+            {title}
+          </Text>
           <Text className="card-content-text">{reference}</Text>
         </Flex>
       </Flex>
