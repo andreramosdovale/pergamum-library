@@ -24,7 +24,8 @@ export function Card({ id, reference, image, description, type }: ICardProps) {
     ref: <ReferenceFragment description={description} reference={reference} />,
   };
 
-  const onSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSelect = (e: any) => {
     const selectedId = e.target.value;
 
     return checkItemIsSelect(selectedId)
@@ -53,7 +54,7 @@ export function Card({ id, reference, image, description, type }: ICardProps) {
             onClick={(e) => onSelect(e)}
           />
         </Box>
-        <div className="card-line" />
+        <div className="card-line"></div>
         <ChoseCardType />
       </Flex>
     </Box>
