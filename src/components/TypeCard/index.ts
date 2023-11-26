@@ -1,1 +1,0 @@
-export { TypeCard } from "./TypeCard";

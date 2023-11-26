@@ -1,7 +1,20 @@
+import { useEffect, useState } from "react";
 import { Box, Button, Flex, Select, TextField } from "@radix-ui/themes";
+import { useExportStore } from "../../store/ExportStore";
 import "./FilterBox.scss";
 
 export function FilterBox() {
+  const [disable, setDisable] = useState(true);
+  const exportStore = useExportStore();
+
+  useEffect(() => {
+    if (exportStore.selected.length > 0) {
+      return setDisable(false);
+    }
+
+    return setDisable(true);
+  }, [exportStore]);
+
   return (
     <Flex className="box" direction={"row"} wrap={"wrap"} gap="3">
       <Box grow={"1"}>
@@ -17,11 +30,7 @@ export function FilterBox() {
         </Select.Content>
       </Select.Root>
       <div className="line" />
-      <Button size="3" variant="classic">
-        Filtrar
-      </Button>
-      <div className="line" />
-      <Button size="3" variant="outline">
+      <Button size="3" variant="classic" disabled={disable}>
         Exportar
       </Button>
     </Flex>

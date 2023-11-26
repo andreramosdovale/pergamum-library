@@ -1,10 +1,10 @@
-import { bookResponse } from "../types/response";
+import { bookResponse, apiResponse } from "../types/response";
 import { fetchWrapper } from "../helpers/fetchWrapper";
 
-async function books(option: string, filter: string) {
+async function books(filter: string): Promise<apiResponse> {
   return fetchWrapper
     .get(
-      `?coluna_um=${option}&search_id=1&search_tab=pesquisa_geral&termo_pesquisa=${filter}`
+      `?coluna_um=LIVRE&search_id=1&search_tab=pesquisa_geral&termo_pesquisa=${filter}`
     )
     .then((response: Array<bookResponse>) => {
       return { data: response, count: response.length };

@@ -3,13 +3,13 @@ import queryService from "../../services/query";
 
 describe("Service/Query", () => {
   it("Api books returns values", async () => {
-    const data = await queryService.books("LIVRE", "harry+potter");
+    const data = await queryService.books("harry+potter");
 
     expect(data.count > 0);
   });
 
   it("Api books returns no values", async () => {
-    const data = await queryService.books("LIVRE", "");
+    const data = await queryService.books("");
 
     expect((data.count = 0));
   });
