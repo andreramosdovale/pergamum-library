@@ -14,7 +14,12 @@ export function ReferenceCard({ title, reference }: ICardProps) {
           <Checkbox className="card-action-checkbox" size="3" />
         </Box>
         <div className="line" />
-        <Flex direction={"column"} gap="3" className="card-content">
+        <Flex
+          direction={"column"}
+          gap="3"
+          justify={"center"}
+          className="card-content"
+        >
           <Text weight={"bold"} className="card-content-text">
             {title}
           </Text>
