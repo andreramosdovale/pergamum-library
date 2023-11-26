@@ -13,10 +13,4 @@ describe("Service/Query", () => {
 
     expect((data.count = 0));
   });
-
-  it("Api indexOptions returns values", async () => {
-    const data = await queryService.indexOptions();
-
-    expect(data.count > 0);
-  });
 });

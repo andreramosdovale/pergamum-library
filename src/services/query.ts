@@ -1,4 +1,4 @@
-import { bookResponse, indexOptionsResponse } from "../types/response";
+import { bookResponse } from "../types/response";
 import { fetchWrapper } from "../helpers/fetchWrapper";
 
 async function books(option: string, filter: string) {
@@ -14,15 +14,6 @@ async function books(option: string, filter: string) {
     });
 }
 
-async function indexOptions() {
-  return fetchWrapper
-    .get(`/opcoes-indice`)
-    .then((response: Array<indexOptionsResponse>) => {
-      return { data: response, count: response.length };
-    });
-}
-
 export default {
   books,
-  indexOptions,
 };
