@@ -1,13 +1,14 @@
 import "./styles/App.scss";
 import { ImageCard } from "./components/ImageCard/ImageCard";
 import { Flex } from "@radix-ui/themes";
+import { FilterBox } from "./components/FilterBox";
 
 function App() {
   const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
     <div className="app">
       <div className="app-header" />
-      <div className="app-filterBox" />
+      <FilterBox />
       <Flex direction={"column"} gap={"3"}>
         {arr.map(() => {
           return (

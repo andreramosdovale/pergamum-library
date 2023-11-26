@@ -16,14 +16,4 @@
     filter: blur(3px);
     -webkit-filter: blur(3px);
   }
-
-  &-filterBox {
-    background-color: white;
-    height: 20dvh;
-    width: 80%;
-    align-self: center;
-    margin-top: -5%;
-    margin-bottom: 2%;
-    z-index: 2;
-  }
 }
