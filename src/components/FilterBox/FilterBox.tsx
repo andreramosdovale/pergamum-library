@@ -99,7 +99,7 @@ export function FilterBox() {
         Exportar
       </Button>
       <Flex align={"center"} gap={"2"}>
-        <Checkbox value={selectAllSelected} onClick={() => onSelect()} />
+        <Checkbox checked={!selectAllSelected} onClick={() => onSelect()} />
         <Text>{!selectAllSelected ? "Remover todos" : "Selecionar todos"}</Text>
       </Flex>
     </Flex>
