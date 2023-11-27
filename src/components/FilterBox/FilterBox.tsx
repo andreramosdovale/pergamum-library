@@ -19,8 +19,8 @@ export function FilterBox() {
   const [inputValue, setInputValue] = useState<string>("");
   const [, setDebouncedInputValue] = useState<string>("");
   const [selectAllSelected, setSelectAllSelected] = useState<boolean>(true);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [, setName] = useState("");
+  const [, setEmail] = useState("");
 
   const exportStore = useExportStore();
   const filterStore = useFilterStore();
