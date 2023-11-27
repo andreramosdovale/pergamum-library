@@ -8,6 +8,8 @@ Pontos a melhorar:
 
 - Reutilização e escrita de css.
 - Melhor utilização dos estados globais com o zustand.
+- Teste Unitarios
+- Design da tela
 
 ## Para visualizar o projeto:
 
