@@ -52,6 +52,7 @@ export function Card({ id, reference, image, description, type }: ICardProps) {
           <Checkbox
             className="card-action-checkbox"
             size="3"
+            checked={checkItemIsSelect(id)}
             value={id}
             onClick={(e) => onSelect(e)}
           />

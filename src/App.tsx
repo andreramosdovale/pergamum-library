@@ -6,6 +6,7 @@ import { bookResponse } from "./types/response";
 import { Card } from "./components/Card";
 import { Pagination } from "./helpers";
 import { useFilterStore } from "./store/FilterStore";
+import { useExportStore } from "./store/ExportStore";
 import { LoadingSpinner } from "./components/LoadingSpinner";
 
 import "./styles/App.scss";
@@ -16,6 +17,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const filterStore = useFilterStore();
+  const exportStore = useExportStore();
 
   const fetchApi = async (filter: string) => {
     setIsLoading(true);
@@ -27,6 +29,7 @@ function App() {
         const listLimit = count > 10 ? 10 : count;
         const paginatedData = new Pagination(data, listLimit);
 
+        exportStore.addToApiData(data);
         setDisplayData(paginatedData.display(1));
         setIsLoading(false);
       })

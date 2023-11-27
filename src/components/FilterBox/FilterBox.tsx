@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
-import { Box, Button, Flex, Select, TextField } from "@radix-ui/themes";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Flex,
+  Select,
+  Text,
+  TextField,
+} from "@radix-ui/themes";
 import { useExportStore } from "../../store/ExportStore";
 import { useFilterStore } from "../../store/FilterStore";
 
@@ -9,6 +17,7 @@ export function FilterBox() {
   const [disable, setDisable] = useState<boolean>(true);
   const [inputValue, setInputValue] = useState<string>("");
   const [, setDebouncedInputValue] = useState<string>("");
+  const [selectAllSelected, setSelectAllSelected] = useState<boolean>(true);
 
   const exportStore = useExportStore();
   const filterStore = useFilterStore();
@@ -38,6 +47,23 @@ export function FilterBox() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleInputChange = (event: any) => {
     setInputValue(event.target.value);
+  };
+
+  const onSelect = () => {
+    setSelectAllSelected((state) => !state);
+
+    if (selectAllSelected) {
+      exportStore.apiData.forEach((item) => {
+        exportStore.addToSelected({
+          id: item.cod_acervo,
+          reference: item.referencia_sem_tag,
+        });
+      });
+
+      return true;
+    }
+
+    exportStore.clearSelected();
   };
 
   return (
@@ -72,6 +98,10 @@ export function FilterBox() {
       <Button size="3" variant="classic" disabled={disable}>
         Exportar
       </Button>
+      <Flex align={"center"} gap={"2"}>
+        <Checkbox value={selectAllSelected} onClick={() => onSelect()} />
+        <Text>{!selectAllSelected ? "Remover todos" : "Selecionar todos"}</Text>
+      </Flex>
     </Flex>
   );
 }
