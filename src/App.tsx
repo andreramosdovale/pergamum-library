@@ -8,6 +8,7 @@ import { Pagination } from "./helpers";
 import { useFilterStore } from "./store/FilterStore";
 import { useExportStore } from "./store/ExportStore";
 import { LoadingSpinner } from "./components/LoadingSpinner";
+import { Pagination as PaginationComponent } from "antd";
 
 import "./styles/App.scss";
 
@@ -15,6 +16,8 @@ function App() {
   const [displayData, setDisplayData] = useState<bookResponse[] | []>([]);
   const [count, setCount] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [, setNumOfPages] = useState(1);
+  const [paginationPageNow, setPaginationPageNow] = useState(1);
 
   const filterStore = useFilterStore();
   const exportStore = useExportStore();
@@ -30,7 +33,10 @@ function App() {
         const paginatedData = new Pagination(data, listLimit);
 
         exportStore.addToApiData(data);
-        setDisplayData(paginatedData.display(1));
+        const { numOfPages } = paginatedData.paginationController();
+
+        setNumOfPages(numOfPages);
+        setDisplayData(paginatedData.display(paginationPageNow));
         setIsLoading(false);
       })
       .then(() => {
@@ -41,6 +47,15 @@ function App() {
   useEffect(() => {
     fetchApi(filterStore.filter.term);
   }, [filterStore.filter.term]);
+
+  const onChangePage = (e: number) => {
+    setPaginationPageNow(e);
+
+    const listLimit = count > 10 ? 10 : count;
+    const paginatedData = new Pagination(exportStore.apiData, listLimit);
+
+    setDisplayData(paginatedData.display(paginationPageNow));
+  };
 
   return (
     <div className="app">
@@ -65,7 +80,15 @@ function App() {
                   );
                 })
               : null}
-            {count > 0 ? <></> : null}
+            {count > 0 ? (
+              <Flex justify={"center"} mb={"3"}>
+                <PaginationComponent
+                  current={paginationPageNow}
+                  onChange={(e) => onChangePage(e)}
+                  total={count}
+                />
+              </Flex>
+            ) : null}
           </>
         )}
       </Flex>

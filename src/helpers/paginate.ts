@@ -26,6 +26,15 @@ class Pagination {
       return this.getPageElements(pageNo);
     }
   }
+
+  public paginationController() {
+    return {
+      numOfEleToDisplayPerPage: this.numOfEleToDisplayPerPage
+        ? this.numOfEleToDisplayPerPage
+        : 0,
+      numOfPages: this.numOfPages ? this.numOfPages : 1,
+    };
+  }
 }
 
 export { Pagination };
