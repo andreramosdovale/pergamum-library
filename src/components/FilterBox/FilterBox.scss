@@ -6,6 +6,10 @@
   margin-bottom: 2%;
   z-index: 2;
   padding: 40px 60px;
+
+  &-btn {
+    cursor: pointer;
+  }
 }
 
 .line {
