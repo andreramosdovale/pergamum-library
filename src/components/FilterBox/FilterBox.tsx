@@ -6,7 +6,10 @@ import { useFilterStore } from "../../store/FilterStore";
 import "./FilterBox.scss";
 
 export function FilterBox() {
-  const [disable, setDisable] = useState(true);
+  const [disable, setDisable] = useState<boolean>(true);
+  const [inputValue, setInputValue] = useState<string>("");
+  const [, setDebouncedInputValue] = useState<string>("");
+
   const exportStore = useExportStore();
   const filterStore = useFilterStore();
 
@@ -18,10 +21,34 @@ export function FilterBox() {
     return setDisable(true);
   }, [exportStore]);
 
+  useEffect(() => {
+    const delayInputTimeoutId = setTimeout(() => {
+      setDebouncedInputValue(inputValue);
+
+      filterStore.changeFilter({
+        term: inputValue,
+        type: filterStore.filter.type,
+      });
+    }, 500);
+
+    return () => clearTimeout(delayInputTimeoutId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputValue, 500]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleInputChange = (event: any) => {
+    setInputValue(event.target.value);
+  };
+
   return (
     <Flex className="box" direction={"row"} wrap={"wrap"} gap="3">
       <Box grow={"1"}>
-        <TextField.Input size="3" placeholder="Termo" />
+        <TextField.Input
+          size="3"
+          placeholder="Termo"
+          value={inputValue}
+          onChange={handleInputChange}
+        />
       </Box>
       <div className="line" />
       <Select.Root
