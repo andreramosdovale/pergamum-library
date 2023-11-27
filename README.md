@@ -15,6 +15,8 @@ Pontos a melhorar:
 
 - Acesse o link da [publicação](pergamum-library.vercel.app).
 
+  ou
+
 - Baixe o projeto na sua maquina e execute:
 
 ```js
