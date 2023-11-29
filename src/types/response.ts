@@ -50,6 +50,5 @@ export interface apiResponse {
 export interface apiExportRequest {
   email: string;
   name: string;
-  data: Array<string>;
-  token: string;
+  data: string[];
 }

@@ -17,15 +17,13 @@ async function get(url: string, options?: RequestInit) {
   return handleResponse(response);
 }
 
-async function post(url: string, body: apiExportRequest) {
+async function post(url: string, data: apiExportRequest) {
   const requestOptions = {
     method: "POST",
     headers: {
-      "X-CSRF-TOKEN": `${body.token}`,
-      "Acces-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify(data),
   } as RequestInit;
 
   const response = await fetch(url, requestOptions);

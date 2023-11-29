@@ -11,16 +11,22 @@ import {
 } from "@radix-ui/themes";
 import { useExportStore } from "../../store/ExportStore";
 import { useFilterStore } from "../../store/FilterStore";
+import { ToastContainer, toast } from "react-toastify";
+import exportService from "../../services/export";
 
 import "./FilterBox.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 export function FilterBox() {
   const [disable, setDisable] = useState<boolean>(true);
   const [inputValue, setInputValue] = useState<string>("");
   const [, setDebouncedInputValue] = useState<string>("");
   const [selectAllSelected, setSelectAllSelected] = useState<boolean>(true);
-  const [, setName] = useState("");
-  const [, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const success = () => toast("Email enviado com sucesso!");
+  const error = () => toast("Erro no envio do email!");
 
   const exportStore = useExportStore();
   const filterStore = useFilterStore();
@@ -69,10 +75,48 @@ export function FilterBox() {
     exportStore.clearSelected();
   };
 
-  const sendEmail = () => {};
+  const sendEmail = async () => {
+    const exportData: string[] = [];
+
+    exportStore.selected.map((item) => {
+      return exportData.push(item.reference);
+    });
+    await exportService
+      .exportBooks({
+        email: email,
+        name: name,
+        data: exportData,
+      })
+      .then(() => {
+        success();
+      })
+      .catch(() => {
+        error();
+      });
+  };
+
+  const disableButton = () => {
+    if (name !== "" && email !== "") {
+      return false;
+    }
+
+    return true;
+  };
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Dialog.Root>
         <Flex className="box" direction={"row"} wrap={"wrap"} gap="3">
           <Box grow={"1"}>
@@ -153,7 +197,9 @@ export function FilterBox() {
               </Button>
             </Dialog.Close>
             <Dialog.Close>
-              <Button onClick={() => sendEmail()}>Enviar</Button>
+              <Button onClick={() => sendEmail()} disabled={disableButton()}>
+                Enviar
+              </Button>
             </Dialog.Close>
           </Flex>
         </Dialog.Content>
