@@ -46,3 +46,10 @@ export interface apiResponse {
   data: bookResponse[];
   count: number;
 }
+
+export interface apiExportRequest {
+  email: string;
+  name: string;
+  data: Array<string>;
+  token: string;
+}
