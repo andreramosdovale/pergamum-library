@@ -1,9 +1,5 @@
 # Biblioteca Pergamum
 
-Requisitos faltantes:
-
-- Envio de itens selecionados via email.
-
 Pontos a melhorar:
 
 - Reutilização e escrita de css.
